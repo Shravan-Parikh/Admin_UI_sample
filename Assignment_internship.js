@@ -52,7 +52,7 @@ function renderPagination(totalPages) {
   const PrevPagebutton = document.createElement('button');
   PrevPagebutton.innerText = "<";
   PrevPagebutton.onclick = () => goToPage(currentPage - 1);
-  PrevPagebutton.disabled = currentPage === 1 ;
+  // PrevPagebutton.disabled = currentPage === 1 ;
   pagination.appendChild(PrevPagebutton);
 
   for (let i = 1; i <= totalPages; i++) {
