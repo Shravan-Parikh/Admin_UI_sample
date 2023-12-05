@@ -1,10 +1,14 @@
 
+// making a global variable for API
 const apiUrl = 'https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json';
 
 let sampleData = [];
 
 let currentPage = 1;
 const rowsPerPage = 10;
+
+
+// fetching API
 
 function fetchData() {
   fetch(apiUrl)
@@ -17,6 +21,7 @@ function fetchData() {
     .catch(error => console.error('Error fetching data:', error));
 }
 
+//rendering table rows
 
 function renderTableRows(data) {
   const tableBody = document.getElementById('tableBody');
@@ -39,6 +44,7 @@ function renderTableRows(data) {
   });
 }
 
+//Pagination
 
 function renderPagination(totalPages) {
   const pagination = document.getElementById('pagination');
@@ -75,6 +81,8 @@ function renderPagination(totalPages) {
 }
 
 
+//Searching functions
+
 function searchOnEnter(event) {
  if (event.key === 'Enter') {
   search();
@@ -90,15 +98,6 @@ function search() {
 }
 
 
-function goToPageFiltered(page) {
-  currentPage = page;
-  const startIndex = (page - 1) * rowsPerPage;
-  const endIndex = startIndex + rowsPerPage;
-  const paginatedData = filteredData.slice(startIndex, endIndex);
-  renderTableRows(paginatedData);
-}
-
-
 function goToPage(page) {
   currentPage = page;
   const startIndex = (page - 1) * rowsPerPage;
@@ -107,6 +106,7 @@ function goToPage(page) {
   renderTableRows(paginatedData);
 }
 
+//check box and functionality
 
 function toggleRowSelection(checkbox) {
   const row = checkbox.closest('tr');
@@ -119,6 +119,7 @@ function selectAll() {
   checkboxes.forEach(checkbox => checkbox.checked = event.target.checked);
 }
 
+// all the delete functions
 
 function deleteSelected() {
   const selectedRows = document.querySelectorAll('.select-checkbox:checked');
@@ -137,7 +138,6 @@ function deleteRow(button) {
     row.remove();
 
 }
-
 
 function editRow(button) {
 const row = button.closest('tr');
